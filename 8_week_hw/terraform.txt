@@ -1,0 +1,19 @@
+Explain the mandatory (required) arguments for a VM in terraform 
+Name - the unique identifier for your VM instance within the project and zone 
+Machine type - determines the hardware specs (CPU and RAM) for your instance 
+Boot disk - defines the VM’s operating system disk. It must include at least at source or initialize_params
+Network interface - GCP VM must be attached to at least one network interface
+Explain how to output the internal and external IP addresses of the provisioned VM and how you figured this out
+Broadcast out the IP using output block
+Figured it with terraform documentation  
+Choose 2 non-required arguments and give an explanation for both (do not copy and paste the reference material) 
+labels are key-value pairs used for organizing, filtering, and billing analysis of resources in a structured way.
+They are machine-readable and commonly used for things like cost allocation, environment classification, and automation logic. 
+Tags, on the other hand, are primarily used for network-level access control (especially firewall rules) and are not meant for billing or general categorization. 
+Explain how you would figure out the correct format for creating a VM with the “centOS stream 10” image (the specific image is up to you). 
+Use  CLI cmd to see if image exists
+Set the image for boot_disk block on image attribute
+Explain the difference between the “name” argument and the computed “id” and “self_link” attributes
+Is something the user provides
+Id is builtin
+Self_link - more verbose than id, used with other services
