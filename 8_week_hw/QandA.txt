@@ -1,0 +1,49 @@
+What is the difference between high availability and fault tolerance? Which is best to strive for?
+High availability means your system stays up most of the time, even when stuff breaks, ‘cause you got backups and quick recovery in place. Fault tolerance is a step above that—it means your system keeps running no matter what fails, no interruption, doesn't even flinch.
+
+Think of high availability as “we recover fast,” and fault tolerance as “we never go down.”
+
+The gold standard is fault tolerance, but it’s expensive and complex, so not everything needs that level. Most companies aim for high availability with smart design, then add fault-tolerant pieces where it really counts.
+
+Don’t chase perfection everywhere—build resilience where it matters, and efficiency everywhere else.
+
+Explain the difference between autoscaling and elasticity. What is vertical and horizontal autoscaling? Is one better? Are they feasible on prem?
+Autoscaling is the system automatically adding or removing resources based on demand, while elasticity is the bigger idea of being able to grow and shrink smoothly without you stressing it.
+
+Vertical scaling means you beef up one machine (more CPU, more RAM), while horizontal scaling means you add more machines to share the load.
+
+Vertical is simpler but has a hard ceiling; horizontal is more flexible and resilient, but takes more design work.
+
+Neither is “better” across the board—modern systems usually lean horizontal because it scales out cleaner and handles failures better.
+
+you can do this on-prem, but it’s harder—you need virtualization, orchestration, and spare capacity sitting ready, unlike cloud where it’s basically on demand.
+
+
+Explain what the difference between managed and unmanaged instance groups is.
+unmanaged instance groups are basically “you built it, you babysit it.” You manually create and manage each instance, no automation, no healing if something breaks.
+
+Managed instance groups - That’s the system doing the heavy lifting—auto-healing, autoscaling, rolling updates, all off a template so every instance stays consistent.
+
+Unmanaged gives you flexibility but comes with more work and risk; managed trades a little control for consistency and reliability.
+
+In the real world, you almost always lean toward managed unless you’ve got a very specific reason not to.
+
+
+
+Explain the different use cases for health checks used by applications (in instance groups) and health checks used by load balancers. Can they be the same? Are they different API calls? Should they be the same?
+application aka instance group health checks are about “should this VM even be alive?” If it fails, the group might restart or replace that instance.
+Load balancer health checks are more like “should I send traffic here right now?”—they can pull a backend out of rotation without killing it.
+They can hit the same endpoint (like /healthz), but they serve different purposes, so don’t treat them like they’re the same thing.
+They’re usually separate configs or API calls under the hood, even if they look similar.
+Best practice? Use related but slightly different checks—keep the instance group check simpler (is the box alive), and make the load balancer check a bit smarter (is the app actually ready to serve).
+
+
+Explain in a few sentences what the 3 tier architecture is and how it relates to what you are learning.
+
+keep it simple—3-tier architecture breaks your app into three layers: presentation (UI), application (business logic), and data (database).
+
+That separation lets you scale, secure, and manage each layer independently instead of everything being tangled together.
+
+your load balancers and health checks sit up front with the presentation layer, your instance groups/autoscaling handle the app layer, and your databases live in the data tier.
+
+That’s why all this matters—you’re designing systems where each layer can scale, heal, and stay available without dragging the others down

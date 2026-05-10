@@ -1,0 +1,17 @@
+Note: This runbook provides high-level guidance for configuring and managing an instance group, outlining the standard steps, expected behaviors, and key decision points without prescribing every exact setting. It assumes that individuals/teams will apply judgment to fill in gaps—making additional configurations or adjustments as needed based on the specific workload, environment, and operational requirements.
+
+Go to/sign into Google Cloud Platform (https://console.cloud.google.com/welcome/)
+Search Instance Group in search bar > Under “Instance groups” click on Instance groups > Click on “Create Instance Group”
+
+Give instance group a unique name - our naming convention is Company name-Unique instance group name-year
+Ex: Acme-Week8-2026
+Click in “Instance template*” under Description > Click “Create a new instance template”
+Give template a unique name
+Scroll down to “Firewall” > select appropriate Firewall
+Click “Save and Continue”
+Under “Location”, if “Multiple zones” is selected and the boxes in “Zones” section under Location is checked, the instance group will manage instances across multiple zones.
+Scroll down to ”Autoscaling” > Click “Configure Autoscaling” > set min and max number of instances
+
+Scroll down to “Autohealing” > Click into “Health check” > Click “create health check” > a left panel opens
+Give health check a name, make any changes needed, when done, click “Save”
+Click “Create”
